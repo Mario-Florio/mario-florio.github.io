@@ -1,0 +1,200 @@
+
+:root {
+    --primary-bg-color: #F2E9E4;
+    --secondary-bg-color: #C9AD97;
+    --primary-fg-color: #222238;
+    --secondary-fg-color: #4A4369;
+    --target-color: #B83E3E;
+}
+
+* {
+    box-sizing: border-box;
+
+    color: var(--primary-fg-color);
+
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 500;
+}
+
+/* Tags */
+body {
+    margin: 0px;
+
+    background-color: var(--primary-bg-color);
+}
+
+ul {
+    /* margin: 0; */
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+h1 {
+    margin-top: 0;
+    padding-top: 21.44px;
+}
+
+h2 {
+    font-size: 30px;
+
+    margin-top: 0;
+    padding-top: 19.92px;
+}
+
+p {
+    line-height: 120%;
+    letter-spacing: 2%;
+}
+
+a {
+    color: var(--target-color);
+    text-decoration: none;
+}
+
+/* Components */
+.underline {
+    border-bottom: 1px solid var(--primary-fg-color);
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.section-wrapper {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.5rem;
+}
+
+.span-wrapper {
+    display: flex;
+    justify-content: flex-end;
+
+    font-size: 12px;
+}
+
+.span-wrapper>span>a {
+    font-style: italic;
+
+}
+
+/* Sections */
+
+/* Hero */
+.hero {
+    position: relative;
+
+    background-image: url("../images/hero-pic.althaf-raja.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    height: 90dvh;
+
+    overflow: hidden;
+}
+
+.hero>.mask {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    background-color: rgb(from var(--primary-bg-color) r g b / 0.7);
+    height: 100%;
+
+    padding: 1rem;
+}
+
+.hero>.mask>h1 {
+    font-size: 45px;
+
+    margin: 0;
+    padding: 0;
+}
+
+.hero>.mask>h2 {
+    font-size: 30px;
+    color: var(--secondary-fg-color);
+
+    margin: 0;
+    padding: 0;
+}
+
+.hero>.mask>p {
+    font-size: 16px;
+
+    margin: 8px;
+    width: 264px;
+}
+
+.hero>.mask>#photo-credit {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+}
+
+/* About */
+.about {
+    background-color: var(--secondary-bg-color);
+}
+
+/* Projects */
+.projects {
+    background-color: var(--primary-bg-color);
+}
+
+.project-description>p {
+    color: var(--secondary-fg-color)
+}
+
+/* Methodology */
+.methodology {
+    background-color: var(--secondary-bg-color);
+}
+
+/* Contact */
+.contact {
+    background-color: var(--primary-bg-color);
+}
+
+@media screen and (min-width: 800px) {
+    .hero>.mask>h1 {
+        font-size: 72px;
+    }
+
+    .hero>.mask>h2 {
+        font-size: 54px;
+    }
+
+    .hero>.mask>p {
+        font-size: 32px;
+        width: 500px;
+    }
+
+    h2 {
+        font-size: 47px;
+    }
+
+    h3 {
+        font-size: 32px;
+    }
+
+    p {
+        font-size: 24px;
+    }
+
+    ul {
+        font-size: 24px;
+    }
+
+    .span-wrapper {
+        font-size: 16px;
+    }
+}
