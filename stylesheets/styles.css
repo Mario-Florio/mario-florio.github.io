@@ -129,6 +129,12 @@ a {
     width: 264px;
 }
 
+.hero>.mask>#photo-credit {
+    position: absolute;
+    bottom: 0rem;
+    right: 1rem;
+}
+
 /* About */
 .about {
     background-color: var(--secondary-bg-color);
