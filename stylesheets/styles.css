@@ -48,7 +48,8 @@ p {
 }
 
 a {
-    color: var(--target-color)
+    color: var(--target-color);
+    text-decoration: none;
 }
 
 /* Components */
