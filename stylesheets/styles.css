@@ -79,46 +79,10 @@ a {
 }
 
 /* Sections */
-/* Navbar */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    background-color: var(--primary-bg-color);
-    padding: 1rem;
-
-    box-shadow: rgba(0, 0, 0, 0.5) 0 0 5px;
-
-    isolation: isolate;
-}
-
-#logo {
-    font-size: 45px;
-}
-
-.hamburger-menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-
-    height: 43px;
-
-    cursor: pointer;
-}
-
-.bar {
-    background-color: var(--secondary-bg-color);
-    height: 3px;
-    width: 60px;
-
-    border-radius: 5px;
-}
 
 /* Hero */
 .hero {
-    background-image: url("./images/hero-pic.althaf-raja.jpg");
+    background-image: url("../images/hero-pic.althaf-raja.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -190,20 +154,6 @@ a {
 .contact {
     background-color: var(--primary-bg-color);
     padding: 1.5rem;
-}
-
-@media screen and (min-width: 700px) {
-    
-    .navbar {
-        justify-content: center;
-    }
-
-    .navbar>.hamburger-menu {
-        position: absolute;
-        opacity: 0;
-        cursor: none;
-    }
-
 }
 
 @media screen and (min-width: 800px) {
