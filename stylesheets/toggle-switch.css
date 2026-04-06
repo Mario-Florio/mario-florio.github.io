@@ -1,0 +1,50 @@
+.toggle-switch {
+    position: relative;
+
+    height: 25px;
+    width: 45px;
+
+    border: 1px solid var(--secondary-bg-color);
+    border-radius: 25px;
+
+    overflow: hidden;
+}
+
+.toggle-switch .switch-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+    width: 100%;
+
+    overflow: hidden;
+}
+
+.toggle-switch .checkbox {
+    display: none;
+    cursor: none;
+}
+
+.toggle-switch .slider {
+    position: absolute;
+    top: 0.5px;
+    bottom: 0px;
+
+    background-color: var(--secondary-bg-color);
+    height: 22px;
+    width: 22px;
+
+    border-radius: 25px;
+
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+
+.toggle-switch .slider[data-on="false"] {
+    left: 0.5px;
+}
+
+.toggle-switch .slider[data-on="true"] {
+    left: 20.5px;
+}

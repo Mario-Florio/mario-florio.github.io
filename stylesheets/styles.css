@@ -1,10 +1,27 @@
 
 :root {
-    --primary-bg-color: #F2E9E4;
-    --secondary-bg-color: #C9AD97;
-    --primary-fg-color: #222238;
-    --secondary-fg-color: #4A4369;
-    --target-color: #B83E3E;
+
+    --theme: default;
+
+    /* Default */
+    --primary-default-bg-color: #F2E9E4;
+    --secondary-default-bg-color: #C9AD97;
+    --primary-default-fg-color: #222238;
+    --secondary-default-fg-color: #4A4369;
+    --default-target-color: #B83E3E;
+
+    /* Dark */
+    --primary-dark-bg-color: #222831;
+    --secondary-dark-bg-color: #393E46;
+    --primary-dark-fg-color: #c4c4c4;
+    --secondary-dark-fg-color: #8C8C8C;
+    --dark-target-color: #B83E3E;
+
+    --primary-bg-color: var(--primary-default-bg-color);
+    --secondary-bg-color: var(--secondary-default-bg-color);
+    --primary-fg-color: var(--primary-default-fg-color);
+    --secondary-fg-color: var(--secondary-default-fg-color);
+    --target-color: var(--default-target-color);
 }
 
 * {
@@ -13,7 +30,7 @@
     color: var(--primary-fg-color);
 
     font-family: 'Times New Roman', Times, serif;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 /* Tags */
@@ -63,6 +80,13 @@ a {
     font-weight: 600;
 }
 
+.flex-aligned-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
 .section-wrapper {
     max-width: 700px;
     margin-left: auto;
@@ -90,7 +114,7 @@ a {
 
     background-image: url("../images/hero-pic.althaf-raja.jpg");
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: 57% 50%;
     background-size: cover;
 
     height: 90dvh;
@@ -150,7 +174,17 @@ a {
     background-color: var(--primary-bg-color);
 }
 
-.project-description>p {
+.project-card>.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.project-card>.project-header>span {
+    color: var(--secondary-fg-color);
+}
+
+.project-card>p {
     color: var(--secondary-fg-color)
 }
 

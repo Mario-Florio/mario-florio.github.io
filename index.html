@@ -5,19 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./stylesheets/styles.css">
     <link rel="stylesheet" href="./stylesheets/topbar.css">
+    <link rel="stylesheet" href="./stylesheets/toggle-switch.css">
     <script src="./scripts/auto-hiding-topbar.js" defer></script>
+    <script src="./scripts/dark-mode-switch.js" defer></script>
     <title>Mario Florio</title>
 </head>
 <body>
     <header class="topbar">
         <div id="logo">MF</div>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/pages/projects/">Projects</a></li>
-                <li><a href="/pages/blogs/">Blogs</a></li>
-            </ul>
-        </nav>
+        <div class="flex-aligned-wrapper">
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/pages/projects/">Projects</a></li>
+                    <li><a href="/pages/blogs/">Blogs</a></li>
+                </ul>
+            </nav>
+            <div class="toggle-switch">
+                <label class="switch-label" id="dark-mode" name="dark-mode">
+                    <input type="checkbox" class="checkbox" id="dark-mode" name="dark-mode">
+                    <span class="slider" data-on="false"></span>
+                </label>
+            </div>
+        </div>
     </header>
     <main>
         <header class="hero">
@@ -45,7 +55,7 @@
         <section class="projects">
             <div class="section-wrapper">
                 <h2 class="underline">Projects</h2>
-                <article class="project-description">
+                <article class="project-card">
                     <h3>Home Energy Observability System</h3>
                     <p>A system for understanding and reducing household energy usage through modeling, environmental data, and behavioral insight.</p>
                     <div class="span-wrapper">
@@ -53,7 +63,7 @@
                     </div>
                     <hr>
                 </article>
-                <article class="project-description">
+                <article class="project-card">
                     <h3>Godot Third Person Controller</h3>
                     <p>A general-purpose third-person controller for Godot 4.</p>
                     <div class="span-wrapper">

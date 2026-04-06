@@ -1,7 +1,7 @@
 
 .topbar {
 
-    --topbar-height: 83.5px; 
+    --topbar-height: 89px; 
 
     position: sticky;
     top: 0px;
@@ -28,12 +28,14 @@
     font-size: 45px;
 }
 
-.topbar>nav>ul {
+.topbar nav>ul {
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 1rem;
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 800px) {
     
     .topbar {
 
