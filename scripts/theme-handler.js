@@ -57,6 +57,7 @@ function applyTheme(theme) {
             root.style.setProperty(PRIMARY_BG_COLOR_NAME, PRIMARY_BG_COLOR_VALUES.DEFAULT);
             root.style.setProperty(SECONDARY_BG_COLOR_NAME, SECONDARY_BG_COLOR_VALUES.DEFAULT);
             root.style.setProperty(PRIMARY_FG_COLOR_NAME, PRIMARY_FG_COLOR_VALUES.DEFAULT);
+            root.style.setProperty(SECONDARY_FG_COLOR_NAME, SECONDARY_FG_COLOR_VALUES.DEFAULT);
             root.style.setProperty(TARGET_COLOR_NAME, TARGET_COLOR_VALUES.DEFAULT);
     };
 };
