@@ -35,9 +35,23 @@
 
 /* Tags */
 body {
-    margin: 0px;
+    display: flex;
+    flex-direction: column;
 
     background-color: var(--primary-bg-color);
+    margin: 0px;
+    padding: 0px;
+    min-height: 100dvh;
+}
+
+body>main {
+    flex: 1;
+}
+
+body>footer {
+    background-color: var(--secondary-bg-color);
+    margin-top: auto;
+    padding: 3rem;
 }
 
 ul {
@@ -89,6 +103,7 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     gap: 1rem;
 }
 
@@ -108,6 +123,17 @@ hr {
 
 .span-wrapper>span>a {
     font-style: italic;
+}
+
+.contacts-icon-wrapper {
+    height: 40px;
+    width: auto;
+
+    overflow: hidden;
+}
+
+.contacts-icon-wrapper>img {
+    height: 100%;
 }
 
 /* Sections */
@@ -235,4 +261,15 @@ hr {
     .span-wrapper {
         font-size: 16px;
     }
+
+}
+
+@media screen and (min-width: 900px) {
+
+    .contacts {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+    }
+
 }
