@@ -71,13 +71,19 @@ a {
     text-decoration: none;
 }
 
+strong {
+    font-weight: 600;
+}
+
+hr {
+    border: none;
+    height: 0.5px;
+    background-color: var(--primary-fg-color);
+}
+
 /* Components */
 .underline {
     border-bottom: 1px solid var(--primary-fg-color);
-}
-
-.bold {
-    font-weight: 600;
 }
 
 .flex-aligned-wrapper {
