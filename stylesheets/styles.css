@@ -136,6 +136,14 @@ hr {
     height: 100%;
 }
 
+.zero-top-padding {
+    padding-top: 0;
+}
+
+.zero-bottom-padding {
+    padding-bottom: 0;
+}
+
 /* Sections */
 
 /* Hero */
@@ -204,17 +212,7 @@ hr {
     background-color: var(--primary-bg-color);
 }
 
-.project-card>.project-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.project-card>.project-header>span {
-    color: var(--secondary-fg-color);
-}
-
-.project-card>p {
+.description-card>p {
     color: var(--secondary-fg-color)
 }
 
