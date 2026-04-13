@@ -5,30 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../stylesheets/styles.css">
     <link rel="stylesheet" href="../../stylesheets/topbar.css">
+    <link rel="stylesheet" href="../../stylesheets/toggle-switch.css">
+    <script type="module" src="../../scripts/local-storage.js"></script>
+    <script type="module" src="../../scripts/theme-handler.js"></script>
+    <script type="module" src="../../scripts/dark-mode-switch.js"></script>
     <script src="../../scripts/auto-hiding-topbar.js" defer></script>
-</link>
     <title>Mario Florio</title>
 </head>
 <body>
     <header class="topbar">
         <div id="logo">MF</div>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/pages/projects/">Projects</a></li>
-                <li><a href="/pages/blogs/">Blogs</a></li>
-            </ul>
-        </nav>
+        <div class="flex-aligned-wrapper">
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/pages/projects/">Projects</a></li>
+                    <li><a href="/pages/blogs/">Blogs</a></li>
+                </ul>
+            </nav>
+            <div class="toggle-switch">
+                <label class="switch-label" id="dark-mode" name="dark-mode">
+                    <input type="checkbox" class="checkbox" id="dark-mode" name="dark-mode">
+                    <span class="slider" data-on="false"></span>
+                </label>
+            </div>
+        </div>
     </header>
     <main>
         <header>
-            <section class="section-wrapper">
+            <section class="section-wrapper zero-bottom-padding">
                 <h2 class="underline">Projects</h2>
-                <h3>Coming soon</h3>
             </section>
         </header>
+        <section class="section-wrapper zero-top-padding">
+            <article class="description-card">
+                <h3>Home Energy Observability System</h3>
+                <p>Coming soon</p>
+                <div class="span-wrapper">
+                    <span>→ <a href="./home-energy-observability-system.html">View Project</a></span>
+                </div>
+                <hr>
+            </article>
+        </section>
     </main>
     <footer>
+        <section>
+            <p style="display: flex; justify-content: center;">© 2026 Mario Florio</p>
+            <div class="flex-aligned-wrapper">
+                <a href="../../">Home</a>
+                <span>|</span>
+                <a href="../blogs/">My Philosophy</a>
+                <span>|</span>
+                <a href="../blogs/">My System & Methodology</a>
+            </div>
+            <div class="contacts flex-aligned-wrapper" style="margin-top: 1rem;">
+                <a class="contacts-icon-wrapper" href="mailto:mario-florio@icloud.com">
+                    <img src="../../images/email.png">
+                </a>
+                <a class="contacts-icon-wrapper" href="https://github.com/mario-florio" target="_blank" rel="noopener noreferrer">
+                    <img src="../../images/github.png">
+                </a>
+            </div>
+        </section>
     </footer>
 </body>
 </html>

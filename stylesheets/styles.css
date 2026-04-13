@@ -1,10 +1,27 @@
 
 :root {
-    --primary-bg-color: #F2E9E4;
-    --secondary-bg-color: #C9AD97;
-    --primary-fg-color: #222238;
-    --secondary-fg-color: #4A4369;
-    --target-color: #B83E3E;
+
+    --theme: default;
+
+    /* Default */
+    --primary-default-bg-color: #F2E9E4;
+    --secondary-default-bg-color: #C9AD97;
+    --primary-default-fg-color: #222238;
+    --secondary-default-fg-color: #4A4369;
+    --default-target-color: #B83E3E;
+
+    /* Dark */
+    --primary-dark-bg-color: #222831;
+    --secondary-dark-bg-color: #393E46;
+    --primary-dark-fg-color: #c4c4c4;
+    --secondary-dark-fg-color: #8C8C8C;
+    --dark-target-color: #B83E3E;
+
+    --primary-bg-color: var(--primary-default-bg-color);
+    --secondary-bg-color: var(--secondary-default-bg-color);
+    --primary-fg-color: var(--primary-default-fg-color);
+    --secondary-fg-color: var(--secondary-default-fg-color);
+    --target-color: var(--default-target-color);
 }
 
 * {
@@ -13,18 +30,31 @@
     color: var(--primary-fg-color);
 
     font-family: 'Times New Roman', Times, serif;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 /* Tags */
 body {
-    margin: 0px;
+    display: flex;
+    flex-direction: column;
 
     background-color: var(--primary-bg-color);
+    margin: 0px;
+    padding: 0px;
+    min-height: 100dvh;
+}
+
+body>main {
+    flex: 1;
+}
+
+body>footer {
+    background-color: var(--secondary-bg-color);
+    margin-top: auto;
+    padding: 3rem;
 }
 
 ul {
-    /* margin: 0; */
     padding: 0;
 }
 
@@ -54,13 +84,27 @@ a {
     text-decoration: none;
 }
 
+strong {
+    font-weight: 600;
+}
+
+hr {
+    border: none;
+    height: 0.5px;
+    background-color: var(--primary-fg-color);
+}
+
 /* Components */
 .underline {
     border-bottom: 1px solid var(--primary-fg-color);
 }
 
-.bold {
-    font-weight: 600;
+.flex-aligned-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .section-wrapper {
@@ -79,7 +123,25 @@ a {
 
 .span-wrapper>span>a {
     font-style: italic;
+}
 
+.contacts-icon-wrapper {
+    height: 40px;
+    width: auto;
+
+    overflow: hidden;
+}
+
+.contacts-icon-wrapper>img {
+    height: 100%;
+}
+
+.zero-top-padding {
+    padding-top: 0;
+}
+
+.zero-bottom-padding {
+    padding-bottom: 0;
 }
 
 /* Sections */
@@ -90,7 +152,7 @@ a {
 
     background-image: url("../images/hero-pic.althaf-raja.jpg");
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: 57% 50%;
     background-size: cover;
 
     height: 90dvh;
@@ -150,7 +212,7 @@ a {
     background-color: var(--primary-bg-color);
 }
 
-.project-description>p {
+.description-card>p {
     color: var(--secondary-fg-color)
 }
 
@@ -197,4 +259,15 @@ a {
     .span-wrapper {
         font-size: 16px;
     }
+
+}
+
+@media screen and (min-width: 900px) {
+
+    .contacts {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+    }
+
 }

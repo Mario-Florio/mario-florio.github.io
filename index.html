@@ -5,20 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./stylesheets/styles.css">
     <link rel="stylesheet" href="./stylesheets/topbar.css">
+    <link rel="stylesheet" href="./stylesheets/toggle-switch.css">
+    <script type="module" src="./scripts/local-storage.js"></script>
+    <script type="module" src="./scripts/theme-handler.js"></script>
+    <script type="module" src="./scripts/dark-mode-switch.js"></script>
     <script src="./scripts/auto-hiding-topbar.js" defer></script>
-</link>
     <title>Mario Florio</title>
 </head>
 <body>
     <header class="topbar">
         <div id="logo">MF</div>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/pages/projects/">Projects</a></li>
-                <li><a href="/pages/blogs/">Blogs</a></li>
-            </ul>
-        </nav>
+        <div class="flex-aligned-wrapper">
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/pages/projects/">Projects</a></li>
+                    <li><a href="/pages/blogs/">Blogs</a></li>
+                </ul>
+            </nav>
+            <div class="toggle-switch">
+                <label class="switch-label" id="dark-mode" name="dark-mode">
+                    <input type="checkbox" class="checkbox" id="dark-mode" name="dark-mode">
+                    <span class="slider" data-on="false"></span>
+                </label>
+            </div>
+        </div>
     </header>
     <main>
         <header class="hero">
@@ -39,22 +50,22 @@
                 </p>
                 <p>The goal is not merely functionality, but enabling control and long-term independence.</p>
                 <div class="span-wrapper">
-                    <span>For more, see <a href="/pages/blogs/" target="_blank" rel="noopener noreferrer">My Philosophy</a></span>
+                    <span>For more, see <a href="/pages/blogs/my-philosophy.html">My Philosophy</a></span>
                 </div>
             </div>
         </section>
         <section class="projects">
             <div class="section-wrapper">
                 <h2 class="underline">Projects</h2>
-                <article class="project-description">
+                <article class="description-card">
                     <h3>Home Energy Observability System</h3>
                     <p>A system for understanding and reducing household energy usage through modeling, environmental data, and behavioral insight.</p>
                     <div class="span-wrapper">
-                        <span>→ <a href="/pages/projects/" target="_blank" rel="noopener noreferrer">View Project</a></span>
+                        <span>→ <a href="/pages/projects/home-energy-observability-system.html">View Project</a></span>
                     </div>
                     <hr>
                 </article>
-                <article class="project-description">
+                <article class="description-card">
                     <h3>Godot Third Person Controller</h3>
                     <p>A general-purpose third-person controller for Godot 4.</p>
                     <div class="span-wrapper">
@@ -69,22 +80,40 @@
                 <h2 class="underline">Methodology</h2>
                 <p>I use an iterative development cycle structured around three stages:</p>
                 <ul>
-                    <li><span class="bold">Conceptual</span> — define the problem and model the system</li>
-                    <li><span class="bold">Engineering</span> — build and test working implementations</li>
-                    <li><span class="bold">Post-development</span> — deploy, observe, and refine through real-world use</li>
+                    <li><strong>Conceptual</strong> — define the problem and model the system</li>
+                    <li><strong>Engineering</strong> — build and test working implementations</li>
+                    <li><strong>Post-development</strong> — deploy, observe, and refine through real-world use</li>
                 </ul>
                 <div class="span-wrapper">
-                    <span>For more, see <a href="/pages/blogs/" target="_blank" rel="noopener noreferrer">My System and Methodology</a></span>
+                    <span>For more, see <a href="/pages/blogs/my-system-and-methodology.html">My System and Methodology</a></span>
                 </div>
             </div>
         </section>
-    </main>
-    <footer>
         <section class="contact">
             <div class="section-wrapper">
                 <h2 class="underline">Contact</h2>
                 <p>Email: <a href="mailto:mario_florio@icloud.com">mario_florio@icloud.com</a></p>
                 <p>GitHub: <a href="https://github.com/Mario-Florio" target="_blank" rel="noopener noreferrer">Mario Florio</a></p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <section style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+            <p>© 2026 Mario Florio</p>
+            <div class="flex-aligned-wrapper">
+                <a href="../../">Home</a>
+                <span>|</span>
+                <a href="./pages/blogs/my-philosophy.html">My Philosophy</a>
+                <span>|</span>
+                <a href="./pages/blogs/my-systems-and-methodology.html">My System & Methodology</a>
+            </div>
+            <div class="contacts flex-aligned-wrapper" style="margin-top: 1rem;">
+                <a class="contacts-icon-wrapper" href="mailto:mario-florio@icloud.com">
+                    <img src="./images/email.png">
+                </a>
+                <a class="contacts-icon-wrapper" href="https://github.com/mario-florio" target="_blank" rel="noopener noreferrer">
+                    <img src="./images/github.png">
+                </a>
             </div>
         </section>
     </footer>
