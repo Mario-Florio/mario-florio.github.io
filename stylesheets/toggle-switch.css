@@ -1,6 +1,9 @@
 .toggle-switch {
     position: relative;
 
+    display: flex;
+    align-items: center;
+
     height: 25px;
     width: 45px;
 
@@ -22,14 +25,14 @@
 }
 
 .toggle-switch .checkbox {
-    display: none;
-    cursor: none;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .toggle-switch .slider {
     position: absolute;
-    top: 0.5px;
-    bottom: 0px;
+    top: 50%;
 
     background-color: var(--secondary-bg-color);
     height: 22px;
@@ -37,14 +40,18 @@
 
     border-radius: 25px;
 
-    transition-duration: 0.2s;
+    transform: translate(0.5px, -50%);
     cursor: pointer;
 }
 
 .toggle-switch .slider[data-on="false"] {
-    left: 0.5px;
+    left: 0;
+    
+    transform: translate(0.5px, -50%);
+    transition: transform 0.2s ease;
 }
 
 .toggle-switch .slider[data-on="true"] {
-    left: 20.5px;
+    transform: translate(10px, -50%);
+    transition: transform 0.2s ease;
 }

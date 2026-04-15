@@ -6,3 +6,15 @@
 .blog li {
     list-style: inherit;
 }
+
+.blog .blockquote {
+    padding: 0.5rem 1rem;
+    background-color: var(--secondary-bg-color);
+    border-left: 5px solid var(--secondary-fg-color);
+    border-radius: 5px;
+}
+
+.blog img {
+    height: auto;
+    width: 100%;
+}
