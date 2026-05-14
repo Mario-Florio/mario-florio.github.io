@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../stylesheets/styles.css">
+    <link rel="stylesheet" href="../../stylesheets/topbar.css">
+    <link rel="stylesheet" href="../../stylesheets/toggle-switch.css">
+    <link rel="stylesheet" href="../../stylesheets/blog.css">
+    <link rel="stylesheet" href="../../stylesheets/notation.css">
+    <script type="module" src="../../scripts/local-storage.js"></script>
+    <script type="module" src="../../scripts/theme-handler.js"></script>
+    <script type="module" src="../../scripts/dark-mode-switch.js"></script>
+    <script src="../../scripts/auto-hiding-topbar.js" defer></script>
+    <title>Mario Florio</title>
+</head>
+<body>
+    <header class="topbar">
+        <div id="logo">MF</div>
+        <div class="flex-aligned-wrapper">
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/pages/projects/">Projects</a></li>
+                    <li><a href="/pages/blogs/">Blogs</a></li>
+                </ul>
+            </nav>
+            <div class="toggle-switch">
+                <label class="switch-label" id="dark-mode" name="dark-mode">
+                    <input type="checkbox" class="checkbox" id="dark-mode" name="dark-mode">
+                    <span class="slider" data-on="false"></span>
+                </label>
+            </div>
+        </div>
+    </header>
+    <main class="blog">
+        <header>
+            <section class="section-wrapper zero-bottom-padding">
+                <h1 class="underline">Home Systems — Towards a Formal Model</h1>
+            </section>
+        </header>
+        <section class="section-wrapper zero-top-padding zero-top-padding">
+            <div class="blockquote">
+                <p>This blog documents the beginning stages of developing a formal modeling system for home systems. It argues that a home should be framed as the systems which emerge from the relationship between the land and its inhabitants. It then uses this framing to begin formalizing the central constraint of a home system: inhabitant demand must be a subset of land capacity.</p>
+            </div>
+
+            <h2 class="underline">Introduction</h2>
+            <p>Homes are complex systems that warrant formal reasoning and justification. A home is not simply a structure with amenities, nor merely a body of components. Rather, a home is a <strong>system that provides reliable support for a specified number of occupants</strong>.</p>
+            <p>Furthermore, a home is not merely a single system, but a system of systems, much of which is interrelated and internally dependent. HVAC can depend on power; power may depend on environmental conditions; etc.</p>
+            <p>The following will be an exploration of home systems, how we can reason about them more formally, and an attempt to move toward a formal modeling system.</p>
+            <hr>
+
+            <h2 class="underline">What Is A Home ?</h2>
+            <p>A home is a supersystem, technically speaking. Its goal is to maximally provide for a specified number of inhabitants. This is a technical definition, but it does not lay the groundwork for grasping what a home <em>truly</em> is. Instead, I will argue that <strong>a home is best understood as the coexistence or participation between a piece of land and its inhabitants</strong>.</p>
+            <p>A home begins when a person takes up residence on a piece of land. From this, a series of systems emerge with the intention of supporting that person. Shelter is built. Food, water, and power supplies must be secured. Communication networks are often installed.</p>
+            <p>Thus we have our two primary variables that lead to a home: <em>land</em> and <em>inhabitants</em>.</p>
+            <hr>
+
+                <h3>The Ideal Home</h3>
+                <p>Modern homes tend toward a similar systemic structure:</p>
+                <ul>
+                    <li>food supply primarily depends on local grocery chains</li>
+                    <li>water and energy are provided by external entities</li>
+                    <li>waste and disposal are connected to city-provided services</li>
+                </ul>
+                <p>In other words, the modern home can be characterized as <em>dependent</em>. These systems are designed to conform primarily to the lifestyle demands of occupants, not to balance the relationship between the inhabitants and the land.</p>
+                <p>The <strong>ideal home</strong>, as I propose it, being a relationship between the land and its inhabitants, should rely solely on that relationship. Instead of relying on external support, <strong>a home should be self-subsisting and independent</strong>. More precisely, <strong>the ideal home system is one in which the land is able to support the requirements of <em>n</em> inhabitant(s)</strong>.</p>
+                <p>So we can say an ideal home system is:</p>
+                <ul>
+                    <li>independent</li>
+                    <li>self-sustaining</li>
+                    <li>autonomous</li>
+                </ul>
+                <hr>
+
+            <h2 class="underline">Constraint Modeling</h2>
+            <p>To visualize this more practically, we can say that the <em>capacity</em> of the land must match or exceed the <em>demand</em> of the inhabitants. If presented as simple values, this can be modeled as:</p>
+            <div class="notation">Demand ≤ Capacity</div>
+            <p>A better representation may be to treat demand and capacity as resource sets. In this case, demand must be a subset of a land's available resource capacity:</p>
+            <div class="notation">Demand ⊆ Capacity</div>
+            <p>This forms the core constraint of what makes a home <em>ideal</em>. From this, we can model further constraints within this relationship, such as food, water, energy, etc.</p>
+            <div class="blockquote">
+                <span>Disclaimer: All mathematics are provisional and primarily for demonstrative purposes.</span>
+            </div>
+            <p><strong>Food / Water Constraint</strong></p>
+            <div class="summation-equation notation">
+                <span>C ≥ </span>
+
+                <span class="sum-container">
+                    <span class="upper">n</span>
+                    <span class="symbol">∑</span>
+                    <span class="lower">i=1</span>
+                </span>
+
+                <span> m[i] + L</span>
+            </div>
+            <ul>
+                <li><em>C</em> — land capacity</li>
+                <li><em>n</em> — number of inhabitants</li>
+                <li><em>m</em> — metabolic requirements of inhabitants</li>
+                <li><em>L</em> — overhead loss (spoilage, storage limits, livestock needs)</li>
+            </ul>
+            <p><strong>Energy Constraints</strong></p>
+            <div class="notation">E ≥ L<span class="subscript">house</span> + L<span class="subscript">infra</span> + L<span class="subscript">storage</span> ...</div>
+            <ul>
+                <li><em>E</em> — land-provided energy (solar, hydro, wind)</li>
+                <li><em>L</em> — overhead loss as vector (house, infrastructure, storage requirements)</li>
+            </ul>
+            <div class="blockquote">
+                <span>Loss codomains are non-exhaustive.</span>
+            </div>
+            <hr>
+
+                <h3>Factoring in Time</h3>
+                <p>Homes are not static entities. The needs of their inhabitants change with time. The land does not always produce the same amount of support and resources. Put clearly, at any given time, a home's land capacity and its accumulated storage must be greater than or equal to the demand of the inhabitants. Thus our model becomes:</p>
+                <div class="notation">∀t, C(t) + S(t) ≥ D(t)</div>
+                <ul>
+                    <li><em>C</em> — land capacity</li>
+                    <li><em>S</em> — storage</li>
+                    <li><em>D</em> — inhabitants' demand</li>
+                    <li><em>t</em> — time period</li>
+                </ul>
+                <p>This is important not simply because it is a more robust model of reality, but because it highlights the importance of storage. Crops are seasonal. Sunlight is variable. In cases where land provisions are reduced, backup storage may be required to meet demand. We can now grasp this explicitly.</p>
+                <hr>
+
+                <h3>Reciprocal System Dynamics (A Blind Spot in Current Design)</h3>
+                <p>The current model assumes that provision is a unidirectional relationship between land and inhabitants. The land provides resources, and the inhabitants simply consume them. The reality is more complex.</p>
+                <p>In the vast majority of cases, even where automation is prioritized, inhabitants must interact with the land in order for it to produce resources. Infrastructure must be built. Systems must be maintained. Soil must be cultivated. Water must be directed. Rainfall must be collected. Thus, the inhabitants are active participants in perpetuating the system.</p>
+                <p>Furthermore, living on the land can affect it either positively or negatively. The current assumption is that land will be used optimally in every respect. However, even with practical intentions, land can be overexploited in ways that reduce its future productivity. Thus, participants are not only active participants in the effective use of the land, but also in its longevity.</p>
+                <p>These two variables—effective use and sustainability—are not included in the current model. However, future iterations could include such dynamics where robustness is prioritized.</p>
+                <hr>
+
+            <h2 class="underline">Towards a Formal Modeling System</h2>
+            <p>From here, we now have the basis for what makes a home self-sustaining. The challenge is moving this into a working model. For this, we need a function capable of assessing the characteristics of land and producing a feasibility rating. For this function to work, we must have a template for producing results.</p>
+
+                <h3>Land Feasibility Modeling</h3>
+                <p>With this understanding in mind, we can begin formally modeling land according to feasibility. The question becomes: <em>given certain characteristics, how capable is a piece of land of providing support?</em></p>
+                <p>This can be modeled as a function:</p>
+                <div class="notation">Land(characteristics) → feasibility profile</div>
+                <p><strong>Input (non-exhaustive):</strong></p>
+                <ul>
+                    <li>solar exposure</li>
+                    <li>rainfall</li>
+                    <li>available water bodies and flow</li>
+                    <li>soil fertility</li>
+                    <li>area / space</li>
+                </ul>
+                <p><strong>Output (non-exhaustive):</strong></p>
+                <ul>
+                    <li>maximum inhabitants</li>
+                    <li>autonomy rating (the percentage to which the land requires external support)</li>
+                    <li>risk profile</li>
+                </ul>
+                <hr>
+
+                <h3>Land Feasibility Template</h3>
+                <p>The crux of the model is the underlying logic of the function. We know that land is finite in its capacity. The question is: how do we grasp those limits objectively and as comprehensively as possible?</p>
+                <p>To do so, proper characteristics must be compiled. These characteristics must be attributes that have a deterministic relationship with some feasibility field, or at least contribute to one.</p>
+                <p>For instance:</p>
+                <div class="notation">Land(soil viability) → soil feasibility</div>
+                <p>As you can imagine, depending on the mapping of land attributes to feasibility, many cases will likely be far more complex. A single rating may require the interrelation of multiple land attributes.</p>
+                <p>This could look like:</p>
+                <div class="notation">Land(soil viability, water availability, area, zoning restrictions) → caloric yield feasibility</div>
+                <p>...and those same attributes will almost certainly feed into other feasibility fields.</p>
+                <p>Furthermore, some land attributes may themselves be complex, requiring the input of many other fields. To the extent that this complexity can be contained, we could possibly use functions to abstract:</p>
+                <div class="notation">Land(soil viability, water availability(water body access, rainfall, restrictions), area, zoning restrictions) → caloric yield feasibility</div>
+                <p>With all that in mind, the major takeaway is that this model can vary in complexity depending on implementation. That complexity is directly related to the granularity of attributes and fields, as well as the relationships between them. Thus, designing this model is not trivial, and will more than likely require iteration and pressure testing to refine into a truly predictive model.</p>
+                <p>The major next step in development is an initial prototype. From that point, the model can be tested against existing home systems to determine whether the feasibility ratings are accurate and useful in any meaningful way.</p>
+                <hr>
+
+            <h2 class="underline">Conclusion</h2>
+            <p>A home system is complex and warrants formal analysis. Decisions in home system design can be made with proper justification when a home is properly quantified. By understanding a home as the relationship between the land and its inhabitants, we can begin moving toward a quantifiable reality. From here, we can model the ideal home—one whose land fully supports its inhabitants—and objectively assess and analyze home systems accordingly.</p>
+            <p>At this point, a full working model has not yet been developed. A proper feasibility template is still needed. However, we have begun moving toward modeling the underlying constraints that participate in this system.</p>
+        </section>
+    </main>
+    <footer>
+        <section>
+            <p style="display: flex; justify-content: center;">© 2026 Mario Florio</p>
+            <div class="flex-aligned-wrapper">
+                <a href="../../">Home</a>
+                <span>|</span>
+                <a href="../blogs/my-philosophy.html">My Philosophy</a>
+                <span>|</span>
+                <a href="../blogs/my-system-and-methodology.html">My System & Methodology</a>
+            </div>
+            <div class="contacts flex-aligned-wrapper" style="margin-top: 1rem;">
+                <a class="contacts-icon-wrapper" href="mailto:mario-florio@icloud.com">
+                    <img src="../../images/email.png">
+                </a>
+                <a class="contacts-icon-wrapper" href="https://github.com/mario-florio" target="_blank" rel="noopener noreferrer">
+                    <img src="../../images/github.png">
+                </a>
+            </div>
+        </section>
+    </footer>
+</body>
+</html>
