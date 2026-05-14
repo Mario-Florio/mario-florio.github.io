@@ -1,0 +1,53 @@
+
+.subscript {
+    position: relative;
+    top: 0.3rem;
+    font-size: 0.8rem;
+}
+
+.notation {
+    display: block;
+    font-style: italic;
+    font-size: 1.3rem;
+    background-color: var(--secondary-bg-color);
+    padding: 1rem;
+}
+
+.summation-equation {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: serif;
+}
+
+.sum-container {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+}
+
+.symbol {
+    font-size: 2.2rem;
+}
+
+.upper,
+.lower {
+    font-size: 0.8rem;
+}
+
+.lower {
+    margin-top: 0.5rem;
+}
+
+@media (min-width: 800px) {
+
+    .subscript {
+        font-size: 1rem;
+    }
+
+    .notation {
+        font-size: 2rem;
+    }
+
+}
