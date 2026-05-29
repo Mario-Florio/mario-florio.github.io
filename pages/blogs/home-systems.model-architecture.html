@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../stylesheets/styles.css">
+    <link rel="stylesheet" href="../../stylesheets/topbar.css">
+    <link rel="stylesheet" href="../../stylesheets/toggle-switch.css">
+    <link rel="stylesheet" href="../../stylesheets/blog.css">
+    <link rel="stylesheet" href="../../stylesheets/notation.css">
+    <script type="module" src="../../scripts/local-storage.js"></script>
+    <script type="module" src="../../scripts/theme-handler.js"></script>
+    <script type="module" src="../../scripts/dark-mode-switch.js"></script>
+    <script src="../../scripts/auto-hiding-topbar.js" defer></script>
+    <title>Mario Florio</title>
+</head>
+<body>
+    <header class="topbar">
+        <div id="logo">MF</div>
+        <div class="flex-aligned-wrapper">
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/pages/projects/">Projects</a></li>
+                    <li><a href="/pages/blogs/">Blogs</a></li>
+                </ul>
+            </nav>
+            <div class="toggle-switch">
+                <label class="switch-label" id="dark-mode" name="dark-mode">
+                    <input type="checkbox" class="checkbox" id="dark-mode" name="dark-mode">
+                    <span class="slider" data-on="false"></span>
+                </label>
+            </div>
+        </div>
+    </header>
+    <main class="blog">
+        <header>
+            <section class="section-wrapper zero-bottom-padding">
+                <h1 class="underline">Home Systems — Model Architecture</h1>
+            </section>
+        </header>
+        <section class="section-wrapper zero-top-padding zero-top-padding">
+            <div class="blockquote">
+                <p>This blog outlines the process of moving from abstract constraint to operational viewpoints for the <em>ideal home</em>. It starts with formally defining <em>Land Capacity</em> and <em>Inhabitant Demand</em>. It then frames the abstraction in terms of general stakeholder concerns and wraps up with several architectural viewpoints for implementing the model.</p>
+            </div>
+
+            <h2 class="underline">Introduction</h2>
+            <p>The core constraint of the <em>ideal home</em>—<em>Demand ⊆ Capacity</em>—is a coherent abstraction. However, for the operability of the model, this abstraction must move toward concrete implementations. To do this, architectural design is useful for keeping the core constraint consistently applied.</p>
+            <p>The following will begin by creating operational definitions for <em>demand</em> and <em>capacity</em>. From there, macro-level design will be established for <em>operational views</em> and <em>domains</em>. With this completed, future implementation will be much more constructive and focused.</p>
+            <hr>
+
+            <h2 class="underline">What Are Demand and Capacity?</h2>
+            <p><em>Demand</em> and <em>capacity</em> are the two variables that make up the core constraint of the <em>ideal home</em> (<em>Demand ⊆ Capacity</em>). While the relationship is intuitive enough, the terms themselves can become complicated when applied. Questions begin to emerge, such as:</p>
+            <ul>
+                <li>Is land simply the physical land?</li>
+                <li>Does capacity include storage?</li>
+                <li>Does inhabitant demand refer simply to biological needs?</li>
+                <li>Does demand include comfort and psychological well-being as well?</li>
+            </ul>
+            <p>These questions matter because the model needs to remain consistently applied across use cases.</p>
+            <hr>
+
+                <h3>Capacity & Demand as Sets</h3>
+                <p>In the current understanding of the model, capacity and demand are treated as sets of objects. Thus, capacity can contain any number of objects, such as:</p>
+                <ul>
+                    <li>Usable area</li>
+                    <li>Soil viability</li>
+                    <li>Water availability</li>
+                    <li>Sunlight exposure</li>
+                    <li>Shelter</li>
+                    <li>Climate conditions</li>
+                </ul>
+                <p>Demand can contain objects such as:</p>
+                <ul>
+                    <li>Metabolism</li>
+                    <li>Thermoregulation</li>
+                    <li>Utility usage</li>
+                </ul>
+                <p>What this demonstrates is that demand and capacity are sets containing heterogeneous objects—that is, objects that are not of the same kind. For instance, <em>usable area</em> is not the same type of thing as <em>sunlight exposure</em>.</p>
+                <p>So the question becomes: <em>what is the common property among each respective set?</em> To put it more philosophically:</p>
+                <ul>
+                    <li>What is the nature of <em>capacity</em>?</li>
+                    <li>What is the nature of <em>demand</em>?</li>
+                </ul>
+                <hr>
+
+                <h3><em>Demand ⊆ Capacity</em> Is an Abstraction</h3>
+                <p>It is important to remember that <em>Demand ⊆ Capacity</em> is an abstraction, which means it is meant to be generalizable across use cases. Because of this, neither demand nor capacity should be trivially reduced to one type of thing. Instead, they need to apply to many operational realities at once.</p>
+                <hr>
+
+                <h3>Requirements for Operational Definitions</h3>
+                <p>In order to arrive at a working definition, it may be best to consider the needs the definition must satisfy.</p>
+                <p>First, the definition must be <strong>generalizable</strong>—that is, it must apply across all use cases. While we cannot know all use cases, we can know those which we have already explored: across time and in terms of food, water, and energy usage. So we know the definition cannot be limited to any one of those perspectives but must subsume them.</p>
+                <p>Second, the definition must be <strong>meaningfully restrictive</strong>. In other words, the definitions cannot be so broad that they become operationally meaningless by providing no semantic constraint. For instance, if capacity simply means any aspect of land whatsoever, distinctions between storage and production become difficult to reason about consistently.</p>
+                <hr>
+
+                <h3>Definitions</h3>
+                <p>With that in mind, we can begin working toward formal definitions.</p>
+                <p><strong>Land Capacity (Capacity):</strong> any aspect of land that contributes to satisfying inhabitant demand.</p>
+                <p>More formally:</p>
+                <div class="notation">
+                    <div style="display: flex; flex-direction: column">
+                        <span>Land Capacity = {</span>
+                        <span class="indent">x | x is an aspect of land that contributes to satisfying inhabitant demand</span>
+                        <span>}</span>
+                    </div>
+                </div>
+                <p>A more abstract version:</p>
+                <div class="notation">
+                    <div style="display: flex; flex-direction: column">
+                        <span>Capacity = {</span>
+                        <span class="indent">x | x participates in the support of inhabitants</span>
+                        <span>}</span>
+                    </div>
+                </div>
+                <p><strong>Inhabitant Demand (Demand):</strong> the required support needed by inhabitants.</p>
+                <p>Formally:</p>
+                <div class="notation">
+                    <div style="display: flex; flex-direction: column">
+                        <span>Demand = {</span>
+                        <span class="indent">x | x is required for inhabitant support</span>
+                        <span>}</span>
+                    </div>
+                </div>
+                <div class="blockquote">
+                    <span>Disclaimer: These definitions do not fully resolve operational distinctions such as storage vs. production, suggesting that such distinctions may belong to operational views rather than the foundational ontology itself.</span>
+                </div>
+                <hr>
+
+            <h2 class="underline">Architectural Viewpoints</h2>
+            <p>To begin describing architectural design, it is useful to determine what perspective we are viewing the abstraction from. This is often termed a <strong>viewpoint</strong> in formal systems architecture.</p>
+            <p>A viewpoint implies the presence of a <em>stakeholder</em> and a <em>concern</em>. For the following, the primary stakeholders will be:</p>
+            <ul>
+                <li><strong>developers</strong> — anyone who engages in constructing model implementations</li>
+                <li><strong>consumers</strong> — anyone who is interested in using the model for the sake of analyzing home systems</li>
+            </ul>
+            <p>The concerns these stakeholders have largely fall under the umbrella of bridging the gap between the abstract and the concrete, or otherwise moving from theory to practice. For this, we need ways to put these abstract categories into:</p>
+            <ul>
+                <li>domain-based subsets</li>
+                <li>modal perspectives</li>
+                <li>temporal frameworks</li>
+            </ul>
+            <p>The following will be an attempt at doing so.</p>
+            <hr>
+
+                <h3>Domain Viewpoint</h3>
+                <p><em>Demand</em> and <em>capacity</em> represent resource dynamics between <em>land</em> and <em>inhabitants</em>. These resource dynamics can be decomposed by type, or <strong>domain</strong>. For instance:</p>
+                <ul>
+                    <li>Food</li>
+                    <li>Water</li>
+                    <li>Power</li>
+                    <li>Structure</li>
+                    <li>etc.</li>
+                </ul>
+                <p>A major architectural task would be to identify central resource domains that drive the most meaningful exchange between land and inhabitants. We could call these <strong>core domains</strong>.</p>
+                <hr>
+
+                    <h4><strong>Core Domains</strong></h4>
+                    <p>To narrow down potential core domains, we must identify what demands are most central to inhabitants. In general, these would be the demands that are necessary for survival. This would include the demand for resources such as:</p>
+                    <ul>
+                        <li>Food</li>
+                        <li>Water</li>
+                        <li>Shelter</li>
+                    </ul>
+                    <p>Food and water are relatively straightforward resource domains. In terms of inhabitants, this represents <em>metabolic and hydration requirements</em>. This directly corresponds to a land’s capacity to provide <em>caloric yield</em> and <em>water availability</em>.</p>
+                    <p>However, shelter becomes a bit less meaningful if taken as a static structure. Should we simply treat it as a need for a house? If so, capacity just becomes the ability to provide materials or the existing structure itself. Instead, shelter may be more meaningfully understood as <em>the need for protection from the environment</em>.</p>
+                    <p>This includes weather, solar radiation, predators, and more. If we were to abstract a core need from this, <em>thermoregulation</em> may be the most comprehensive and appropriate for our current purposes. With that, we could say energy is a meaningful resource domain—land must provide enough energy for inhabitants to protect themselves from the elements.</p>
+                    <div class="blockquote">
+                        <span>Note: Due to the significance of power in modern homes, and its overlap with energy more generally, it is reasonable to visualize inhabitant energy demand (thermoregulatory requirements) as subsumed by a more comprehensive <em>power/energy usage</em>. For the sake of simplicity, the following will commit to the above conclusion. However, future developments may deviate toward the latter.</span>
+                    </div>
+                    <p>This leads us to our core domains (non-exhaustive):</p>
+                    <ul>
+                        <li>Food</li>
+                        <li>Water</li>
+                        <li>Energy</li>
+                    </ul>
+                    <hr>
+
+                    <h4><strong>Formal Subsets</strong></h4>
+                    <p>With that in mind, we can begin formalizing these core domains. To start, demand and capacity represent resource sets. These sets can be partitioned into constituent subsets based on resource demands.</p>
+                    <p>By applying those domains to our sets, we can produce formal subsets:</p>
+                    <div class="notation smaller-font-large-screen">
+                        <div style="display: flex; flex-direction: column">
+                            <span>Capacity = {</span>
+                            <span class="indent">Caloric Yield,</span>
+                            <span class="indent">Water Availability,</span>
+                            <span class="indent">Energy Availability,</span>
+                            <span class="indent">...</span>
+                            <span>}</span>
+                        </div>
+                        <br>
+                        <div style="display: flex; flex-direction: column">
+                            <span>Demand = {</span>
+                            <span class="indent">Metabolic Requirements,</span>
+                            <span class="indent">Hydration Requirements,</span>
+                            <span class="indent">Thermoregulatory Requirements,</span>
+                            <span class="indent">...</span>
+                            <span>}</span>
+                        </div>
+                    </div>
+                    <p>Thus, we can formally express the core constraint in terms of domain:</p>
+                    <div class="notation">
+                        <p>Metabolic Requirements ⊆ Caloric Yield</p>
+                        <p>Hydration Requirements ⊆ Water Availability</p>
+                        <p>Thermoregulatory Requirements ⊆ Energy Availability</p>
+                    </div>
+                    <hr>
+
+                <h3>Modal Viewpoint</h3>
+                <p>A question that begins to emerge when considering resource subsets is: <em>does this subset represent a potential or actual value?</em> Is <em>crop yield</em> what a land is capable of producing or what it has actually produced? Are we thinking in terms of realized production or possible outcomes?</p>
+                <p>This concern creates the need for a <strong>modal viewpoint</strong>—a perspective concerned with the state or <em>mode</em> of a thing rather than its substance. In other words, the modal view is used when a use case requires knowledge of the state in which a resource exists.</p>
+                <p>From this view, we can now answer questions such as the above. A subset can be analyzed as <em>actual</em> or <em>potential</em>. For instance, a food subset of land capacity may be determined in terms of <em>crop yield</em>, as well as in terms of <em>potential crop yield</em>.</p>
+                <hr>
+
+                    <h4><strong>Actual vs. Potential</strong></h4>
+                    <p>The primary practical difference between actual and potential is that of input. For instance, when measuring actual crop yield, we are measuring realized production (e.g., amount of each crop type, weight, etc.).</p>
+                    <div class="notation">
+                        <span>actual_yield(</span>
+                        <span>crop_type, </span>
+                        <span>weight, </span>
+                        <span>... )</span>
+                    </div>
+                    <p>With potential yield, the input becomes arable area, soil profile, crop selection, climate conditions, etc.</p>
+                    <div class="notation">
+                        <span>potential_yield(</span>
+                        <span>arable_area, </span>
+                        <span>soil_profile, </span>
+                        <span>crop_selection, </span>
+                        <span>climate, </span>
+                        <span>... )</span>
+                    </div>
+                    <p>On the surface, it may seem that actual and potential modes are primarily concerned with land capacity. This may be true practically speaking; however, these same modes can be applied to inhabitant demand. For instance, it may be useful to consider the potential for family growth, changing individual needs, or even health complications. Thus, there is a <em>potential inhabitant demand</em> that exists alongside the current actual demand.</p>
+                    <hr>
+
+                    <h4><strong>Mode × Domain Matrix</strong></h4>
+                    <p>From here, we can begin formalizing resources according to a matrix:</p>
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>Actual</th>
+                            <th>Potential</th>
+                        </tr>
+                        <tr>
+                            <th>Food</th>
+                            <td>Crop yield</td>
+                            <td>Potential crop yield</td>
+                        </tr>
+                        <tr>
+                            <th>Water</th>
+                            <td>Water availability</td>
+                            <td>Potential water availability</td>
+                        </tr>
+                        <tr>
+                            <th>Energy</th>
+                            <td>Energy availability</td>
+                            <td>Potential energy availability</td>
+                        </tr>
+                    </table>
+                    <p>If this seems obvious or unrevealing, that means the architecture is doing its job. The goal is not to produce profound insights, but rather to organize the macro-level structure of the model so that it can begin reflecting the nuances of the underlying reality while reducing complexity.</p>
+                    <hr>
+
+                    <h4><strong>Extensibility of Modes</strong></h4>
+                    <p>This section focused on actual and potential modes. However, these modes do not exhaust the modal view; they simply happen to be a useful starting point. Future extensions could account for a range of possible modal views, such as peaks, failure states, risk, etc. Furthermore, explicit use of <em>possible world</em> semantics, as well as stochastic analysis, could make the existing architecture more robust. That said, the current goal is simply to establish a minimally useful set that is immediately operational.</p>
+                    <hr>
+
+                <h3>Temporal Viewpoint</h3>
+                <p>It is necessary to consider temporality if we are to avoid treating the relationship between land and inhabitants as static. This is where the model becomes:</p>
+                <div class="notation">∀t, Capacity(t) + Storage(t) ≥ Demand(t)</div>
+                <p>With the variable <em>time</em>, we can now model capacity and demand as multidimensional.</p>
+                <p>Common time periods may include:</p>
+                <ul>
+                    <li>Seasonal</li>
+                    <li>Annual</li>
+                    <li>Long-term</li>
+                </ul>
+                <hr>
+
+                    <h4><strong>Stocks and Flows</strong></h4>
+                    <p>With the temporal dimension, we now see the importance of explicitly modeling storage — <em>capacity</em> is not just what is produced at any moment, but also what has accumulated over time. A question raised previously was: <em>does capacity include storage?</em> The answer is <em>yes</em>.</p>
+                    <p>The distinction we actually make here is not between <em>capacity</em> and <em>storage</em>, but between <em>stocks</em> and <em>flows</em>. <strong>Flows</strong> are the processes through which transformation occurs. Practically speaking, in terms of resources, flow is the rate at which a quantity increases or decreases. A field of crops actively produces over a period of time, and the rate at which that occurs (e.g., <em>x per month</em>) can be thought of as the <em>flow</em> of production.</p>
+                    <p><strong>Stocks</strong> represent the state of resource quantity at a moment in time. While a crop field is understood as producing over time, a storage unit can be understood as holding a static amount at a discrete moment in time.</p>
+                    <p>For a stronger visual representation, a matrix may help:</p>
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>Stock</th>
+                            <th>Flow</th>
+                        </tr>
+                        <tr>
+                            <th>Food</th>
+                            <td>Pantry</td>
+                            <td>Crop growth rate</td>
+                        </tr>
+                        <tr>
+                            <th>Water</th>
+                            <td>Reservoir volume</td>
+                            <td>Rainfall per day</td>
+                        </tr>
+                        <tr>
+                            <th>Power</th>
+                            <td>Battery charge</td>
+                            <td>Solar generation rate</td>
+                        </tr>
+                    </table>
+                    <p>Thus, where technical clarity is a concern, the above model may actually be described as:</p>
+                    <div class="notation">∀t, Flow(t) + Stock(t) ≥ Demand(t)</div>
+                    <hr>
+
+                <h3>Evaluative Metrics Viewpoint</h3>
+                <p>From the relation of the above viewpoints, we can derive metrics for certain use cases.</p>
+                <hr>
+
+                <h4><strong>Optimality</strong></h4>
+                <p>Represents how efficiently a system realizes its theoretical productive potential in practice. Measures the percentage of potential capacity that is realized as actual capacity.</p>
+                <div class="notation" style="display: flex; align-items: center; flex-wrap: wrap; gap: 1rem; text-align: center;">
+                    <span>optimality% =</span>
+                    <div class="fraction-container">
+                        <span>actual_capacity</span>
+                        <span class="fraction-bar"></span>
+                        <span>potential_capacity</span>
+                    </div>
+                    <span><span class="symbol-font">x</span> 100</span>
+                </div>
+                <p><strong>Example:</strong></p>
+                <ul>
+                    <li><em>Actual Caloric Yield</em> — 10,000 kilocalories per season</li>
+                    <li><em>Potential Caloric Yield</em> — 100,000 kilocalories per season</li>
+                    <li><em>Optimality Rating</em> — 10%</li>
+                </ul>
+                <hr>
+
+                <h4><strong>Feasibility</strong></h4>
+                <p>Represents the degree to which a system can satisfy required demand under its available capacity constraints. Measures the percentage of demand that can be satisfied by available capacity.</p>
+                <div class="notation smaller-font-large-screen" style="display: flex; align-items: center; flex-wrap: wrap; gap: 1rem; text-align: center;">
+                    <span>feasibility% =</span>
+                    <div class="fraction-container">
+                        <span>potential_capacity <span class="symbol-font">-</span> overhead_loss</span>
+                        <span class="fraction-bar"></span>
+                        <span>demand</span>
+                    </div>
+                    <span><span class="symbol-font">x</span> 100</span>
+                </div>
+                <table>
+                    <tr>
+                        <th>Value</th>
+                        <th>Meaning</th>
+                    </tr>
+                    <tr>
+                        <td>50%</td>
+                        <td>insufficient</td>
+                    </tr>
+                    <tr>
+                        <td>100%</td>
+                        <td>exact sufficiency</td>
+                    </tr>
+                    <tr>
+                        <td>200%</td>
+                        <td>double required capacity</td>
+                    </tr>
+                </table>
+
+                <p><strong>Example:</strong></p>
+                <ul>
+                    <li><em>Potential Caloric Yield</em> — 150,000 kilocalories per season</li>
+                    <li><em>Overhead Loss</em> — 25,000 kilocalories per season</li>
+                    <li><em>Metabolic Requirements</em> — 180,000 kilocalories per season</li>
+                    <li><em>Feasibility Rating</em> — ~70% (almost sufficient at providing for demand)</li>
+                </ul>
+                <hr>
+
+                <h4><strong>Sustainability</strong></h4>
+                <p>Represents the degree to which a system can sustain its own productive capacity without self-exhaustion. Measures the percentage of potential capacity that remains after sustaining the system itself.</p>
+                <div class="notation smaller-font-large-screen" style="display: flex; align-items: center; flex-wrap: wrap; gap: 1rem; text-align: center;">
+                    <span>sustainability% =</span>
+                    <span>1 <span class="symbol-font">-</span></span>
+                    <div class="fraction-container">
+                        <span>overhead_loss</span>
+                        <span class="fraction-bar"></span>
+                        <span>potential_capacity</span>
+                    </div>
+                    <span><span class="symbol-font">x</span> 100</span>
+                </div>
+                <table>
+                    <tr>
+                        <th>Value</th>
+                        <th>Meaning</th>
+                    </tr>
+                    <tr>
+                        <td>100%</td>
+                        <td>no sustaining overhead</td>
+                    </tr>
+                    <tr>
+                        <td>80%</td>
+                        <td>efficient</td>
+                    </tr>
+                    <tr>
+                        <td>50%</td>
+                        <td>half of output consumed internally</td>
+                    </tr>
+                    <tr>
+                        <td>0%</td>
+                        <td>entirely self-consuming</td>
+                    </tr>
+                    <tr>
+                        <td>< 0%</td>
+                        <td>unsustainable</td>
+                    </tr>
+                </table>
+                <p><strong>Example:</strong></p>
+                <ul>
+                    <li><em>Potential Caloric Yield</em> — 100,000 kilocalories</li>
+                    <li><em>Overhead Loss</em> — 25,000 kilocalories</li>
+                    <li><em>Sustainability Rating</em> — 75% (~ efficient producer of capacity)</li>
+                </ul>
+                <hr>
+
+            <h2 class="underline">Conclusion</h2>
+            <p>With that, the model has now moved from pure abstraction toward operationalization. Capacity and demand have been given formal definitions. Several viewpoints have been defined for common use-case perspectives. From here, the model can begin developing toward practical ends.</p>
+            <p>The next steps will involve developing thin-slice prototypes for each major domain. This will be done using an experimental method so that models can be empirically grounded. These prototypes can then be iterated upon as real-world demands emerge.</p>
+            <p>The prototypes will start small and minimal. The goal for this model is not precision, but utility. If a crude or simplistic model of the land provides useful metrics for analyzing feasibility, then further fidelity is not necessarily helpful nor desired.</p>
+        </section>
+    </main>
+    <footer>
+        <section>
+            <p style="display: flex; justify-content: center;">© 2026 Mario Florio</p>
+            <div class="flex-aligned-wrapper">
+                <a href="../../">Home</a>
+                <span>|</span>
+                <a href="../blogs/my-philosophy.html">My Philosophy</a>
+                <span>|</span>
+                <a href="../blogs/my-system-and-methodology.html">My System & Methodology</a>
+            </div>
+            <div class="contacts flex-aligned-wrapper" style="margin-top: 1rem;">
+                <a class="contacts-icon-wrapper" href="mailto:mario-florio@icloud.com">
+                    <img src="../../images/email.png">
+                </a>
+                <a class="contacts-icon-wrapper" href="https://github.com/mario-florio" target="_blank" rel="noopener noreferrer">
+                    <img src="../../images/github.png">
+                </a>
+            </div>
+        </section>
+    </footer>
+</body>
+</html>

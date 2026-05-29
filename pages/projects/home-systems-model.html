@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../stylesheets/styles.css">
+    <link rel="stylesheet" href="../../stylesheets/topbar.css">
+    <link rel="stylesheet" href="../../stylesheets/toggle-switch.css">
+    <link rel="stylesheet" href="../../stylesheets/blog.css">
+    <script type="module" src="../../scripts/local-storage.js"></script>
+    <script type="module" src="../../scripts/theme-handler.js"></script>
+    <script type="module" src="../../scripts/dark-mode-switch.js"></script>
+    <script src="../../scripts/auto-hiding-topbar.js" defer></script>
+    <title>Mario Florio</title>
+</head>
+<body>
+    <header class="topbar">
+        <div id="logo">MF</div>
+        <div class="flex-aligned-wrapper">
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/pages/projects/">Projects</a></li>
+                    <li><a href="/pages/blogs/">Blogs</a></li>
+                </ul>
+            </nav>
+            <div class="toggle-switch">
+                <label class="switch-label" id="dark-mode" name="dark-mode">
+                    <input type="checkbox" class="checkbox" id="dark-mode" name="dark-mode">
+                    <span class="slider" data-on="false"></span>
+                </label>
+            </div>
+        </div>
+    </header>
+    <main class="blog">
+        <header>
+            <section class="section-wrapper">
+                <h1 class="underline">Home Systems Model</h1>
+                <p>A formal modeling framework for analyzing household systems in terms of demand, capacity, and their temporal and modal relationships.</p>
+                <h2 class="underline">Overview</h2>
+                <p>The Home Systems Model is a conceptual framework for representing a home as a system of interacting resource capacities and inhabitant demands. It supports structured decomposition of resources across domains (e.g., food, water, power), along with analysis across state, time, and evaluative dimensions.</p>
+                <p>The model is currently in early-stage development and is focused on establishing a stable conceptual architecture.</p>
+                <hr>
+
+                <h2 class="underline">Core Concepts</h2>
+                <ul style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <li><strong>Demand:</strong> Requirements necessary to support inhabitants.</li>
+                    <li><strong>Capacity:</strong> Land resources that satisfy demand.</li>
+                    <li><strong>Ideal Home:</strong> Benchmark for assessing home systems (I.e., Demand ⊆ Capacity).</li>
+                    <li><strong>Domain Decomposition:</strong> Partitioning of demand and capacity into resource categories (e.g., food, water, power).</li>
+                    <li><strong>Modal Structure:</strong> Representation of resources in different states (e.g., potential vs actual).</li>
+                    <li><strong>Temporality:</strong> Time-based evolution of demand and capacity.</li>
+                    <li><strong>Evaluative Metrics:</strong> Derived measures such as optimality, feasibility, and sustainability.</li>
+                </ul>
+                <hr>
+
+                <h2 class="underline">Current Status</h2>
+                <p>This project is currently in the conceptual modeling phase. The focus is on defining a coherent and extensible architecture rather than implementation or simulation.</p>
+                <p>Formalization, stochastic modeling, and optimization layers are not yet included.</p>
+                <hr>
+
+                <h2 class="underline">Architecture</h2>
+                <p>See <a href="https://github.com/Mario-Florio/home-systems-model/blob/main/docs/architecture.md" target="_blank" rel="noopener noreferrer">docs/architecture.md</a> for the current architectural specification.</p>
+                <hr>
+
+                <h2 class="underline">Links</h2>
+                <ul>
+                    <li><em>Repo</em> — <a href="https://github.com/Mario-Florio/home-systems-model" target="_blank" rel="noopener noreferrer">https://github.com/Mario-Florio/home-systems-model</a></li>
+                    <li><em>Home Systems Blog I (Towards a Formal Model)</em> — <a href="../blogs/home-systems.towards-a-formal-model.html">../blogs/home-systems.towards-a-formal-model.html</a></li>
+                    <li><em>Home Systems Blog II (Model Architecture)</em> — <a href="../blogs/home-systems.model-architecture.html">../blogs/home-systems.model-architecture.html</a></li>
+                </ul>
+
+            </section>
+        </header>
+    </main>
+    <footer>
+        <section>
+            <p style="display: flex; justify-content: center;">© 2026 Mario Florio</p>
+            <div class="flex-aligned-wrapper">
+                <a href="../../">Home</a>
+                <span>|</span>
+                <a href="../blogs/my-philosophy.html">My Philosophy</a>
+                <span>|</span>
+                <a href="../blogs/my-system-and-methodology.html">My System & Methodology</a>
+            </div>
+            <div class="contacts flex-aligned-wrapper" style="margin-top: 1rem;">
+                <a class="contacts-icon-wrapper" href="mailto:mario-florio@icloud.com">
+                    <img src="../../images/email.png">
+                </a>
+                <a class="contacts-icon-wrapper" href="https://github.com/mario-florio" target="_blank" rel="noopener noreferrer">
+                    <img src="../../images/github.png">
+                </a>
+            </div>
+        </section>
+    </footer>
+</body>
+</html>
