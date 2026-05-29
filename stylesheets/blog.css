@@ -8,6 +8,7 @@
 }
 
 .blog .blockquote {
+    margin-top: 0.5rem;
     padding: 0.5rem 1rem;
     background-color: var(--secondary-bg-color);
     border-left: 5px solid var(--secondary-fg-color);
@@ -17,4 +18,39 @@
 .blog img {
     height: auto;
     width: 100%;
+}
+
+.blog .indent {
+    margin-left: 2rem;
+}
+
+.blog table {
+    width: 100%;
+}
+
+.blog table tr:nth-child(odd) td:nth-child(odd),
+.blog table tr:nth-child(odd) th:nth-child(odd),
+.blog table tr:nth-child(even) td:nth-child(even),
+.blog table tr:nth-child(even) th:nth-child(even) {
+    background-color: var(--secondary-bg-color);
+}
+
+.blog table, .blog th, .blog td {
+    text-align: left;
+
+    margin-top: 1rem;
+    padding: 0.5rem;
+
+    border: 1px solid var(--secondary-fg-color);
+    border-collapse: collapse;
+}
+
+.blog th {
+    font-weight: 600;
+}
+
+@media (min-width: 800px) {
+    .blog .smaller-font-large-screen {
+        font-size: 1.5rem;
+    }
 }
